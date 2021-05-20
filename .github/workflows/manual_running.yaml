@@ -13,13 +13,13 @@ jobs:
 #      projects: ${{ steps.split_projects.outputs }}
     steps:
       - name: Build array of projects
-        uses: jungwinter/split@v1
+        uses: rishabhgupta/split-by@v1
         id: split_projects
         with:
-          msg: ${{ github.event.inputs.projects }}
-          seperator: ','
+          string: ${{ github.event.inputs.projects }}
+          split-by: ','
       - name: Print
-        run: echo ${{ toJSON(steps.split_projects.outputs) }}
+        run: echo ${{ steps.split_projects.outputs }}
 
 #    outputs:
 #      projects: ${{ steps.split_projects.outputs.projects }}
