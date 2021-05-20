@@ -10,24 +10,35 @@ jobs:
   define_project:
     runs-on: ubuntu-latest
     outputs:
-      projects: ${{ steps.split_projects.outputs.projects }}
+      projects: ${{ steps.split_projects.outputs.* }}
     steps:
-      - name: Split projects name
+      - name: Build array of projects
+        uses: jungwinter/split@v1
         id: split_projects
-        run: |
-          PROJECTS="$( echo ${{ github.event.inputs.projects }} | sed 's/,/\n/g')"
-          PROJECTS="${PROJECTS//'%'/'%25'}"
-          PROJECTS="${PROJECTS//$'\n'/'%0A'}"
-          PROJECTS="${PROJECTS//$'\r'/'%0D'}"
-          echo "::set-output name=projects::$PROJECTS"
-      - name: Create list of modified files
-        id: modified_files_list
-        uses: lucaspinheirogit/list-from-string-array-action@v1.4.3
         with:
-          stringArray: ${{ steps.split_projects.outputs.projects }}
-
-      - name: Print modified files
-        run: echo '${{ steps.modified_files_list.outputs.stringList }}'
+          msg: ${{ github.event.inputs.projects }}
+          separator: ','
+      - name: Print array
+        run: echo ${{ steps.split_projects.outputs.* }}
+#    outputs:
+#      projects: ${{ steps.split_projects.outputs.projects }}
+#    steps:
+#      - name: Split projects name
+#        id: split_projects
+#        run: |
+#          PROJECTS="$( echo ${{ github.event.inputs.projects }} | sed 's/,/\n/g')"
+#          PROJECTS="${PROJECTS//'%'/'%25'}"
+#          PROJECTS="${PROJECTS//$'\n'/'%0A'}"
+#          PROJECTS="${PROJECTS//$'\r'/'%0D'}"
+#          echo "::set-output name=projects::$PROJECTS"
+#      - name: Create list of modified files
+#        id: modified_files_list
+#        uses: lucaspinheirogit/list-from-string-array-action@v1.4.3
+#        with:
+#          stringArray: ${{ steps.split_projects.outputs.projects }}
+#
+#      - name: Print modified files
+#        run: echo '${{ steps.modified_files_list.outputs.stringList }}'
 
 #  show_projects:
 #    needs: define_project
