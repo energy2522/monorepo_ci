@@ -9,8 +9,8 @@ on:
 jobs:
   define_project:
     runs-on: ubuntu-latest
-    outputs:
-      projects: ${{ steps.split_projects.outputs.* }}
+#    outputs:
+#      projects: ${{ steps.split_projects.outputs.* }}
     steps:
       - name: Build array of projects
         uses: jungwinter/split@v1
