@@ -9,8 +9,8 @@ on:
 jobs:
   define_project:
     runs-on: ubuntu-latest
-#    outputs:
-#      projects: ${{ steps.split_projects.outputs }}
+    outputs:
+      projects: ${{ steps.split_projects.outputs }}
     steps:
       - name: Build array of projects
         uses: rishabhgupta/split-by@v1
@@ -18,8 +18,6 @@ jobs:
         with:
           string: ${{ github.event.inputs.projects }}
           split-by: ','
-      - name: Print
-        run: echo ${{ steps.split_projects.outputs.* }}
 
 #    outputs:
 #      projects: ${{ steps.split_projects.outputs.projects }}
@@ -41,12 +39,12 @@ jobs:
 #      - name: Print modified files
 #        run: echo '${{ steps.modified_files_list.outputs.stringList }}'
 
-#  show_projects:
-#    needs: define_project
-#    runs-on: ubuntu-latest
-#    strategy:
-#      matrix:
-#        project: ${{ needs.define_project.outputs.projects.* }}
-#    steps:
-#      - name: Display
-#        run: echo ${{ matrix.project }}
+  show_projects:
+    needs: define_project
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project: ${{ needs.define_project.outputs.projects.* }}
+    steps:
+      - name: Display
+        run: echo ${{ matrix.project }}
