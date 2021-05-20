@@ -16,4 +16,4 @@ jobs:
           echo "::set-output name=projects::$( echo test1,test2 | sed 's/,/\n/g')"
 
       - name: Display
-        run: echo ${{ steps.split_projects.output.projects }}
+        run: echo ${{ steps.split_projects.outputs.projects }}
