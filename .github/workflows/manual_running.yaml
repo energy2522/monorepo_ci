@@ -10,7 +10,7 @@ jobs:
   define_project:
     runs-on: ubuntu-latest
     outputs:
-      projects: ${{ steps.split_projects.outputs }}
+      projects: ${{ steps.split_projects.outputs._1 }}
     steps:
       - name: Build array of projects
         uses: rishabhgupta/split-by@v1
@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        project: ${{ needs.define_project.outputs.projects.* }}
+        project: ${{ needs.define_project.outputs.projects}}
     steps:
       - name: Display
         run: echo ${{ matrix.project }}
