@@ -20,13 +20,21 @@ jobs:
           PROJECTS="${PROJECTS//$'\n'/'%0A'}"
           PROJECTS="${PROJECTS//$'\r'/'%0D'}"
           echo "::set-output name=projects::$PROJECTS"
+      - name: Create list of modified files
+        id: modified_files_list
+        uses: lucaspinheirogit/list-from-string-array-action@v1.4.3
+        with:
+          stringArray: ${{ steps.split_projects.outputs.projects }}
 
-  show_projects:
-    needs: define_project
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        project: ${{ needs.define_project.outputs.projects }}
-    steps:
-      - name: Display
-        run: echo ${{ matrix.project }}
+      - name: Print modified files
+        run: echo '${{ steps.modified_files_list.outputs.stringList }}'
+
+#  show_projects:
+#    needs: define_project
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix:
+#        project: ${{ needs.define_project.outputs.projects }}
+#    steps:
+#      - name: Display
+#        run: echo ${{ matrix.project }}
