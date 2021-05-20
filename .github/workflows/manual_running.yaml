@@ -18,6 +18,7 @@ jobs:
           PROJECTS="${PROJECTS//$'\n'/'%0A'}"
           PROJECTS="${PROJECTS//$'\r'/'%0D'}"
           echo "::set-output name=projects::$PROJECTS"
+          echo $PROJECTS
   show_projects:
     needs: define_project
     runs-on: ubuntu-latest
