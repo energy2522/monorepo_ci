@@ -19,7 +19,7 @@ jobs:
           string: ${{ github.event.inputs.projects }}
           split-by: ','
       - name: Print
-        run: echo ${{ steps.split_projects.outputs }}
+        run: echo ${{ steps.split_projects.outputs.* }}
 
 #    outputs:
 #      projects: ${{ steps.split_projects.outputs.projects }}
