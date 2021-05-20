@@ -2,19 +2,17 @@ name: Manually triggered workflow
 on:
   workflow_dispatch:
     inputs:
-      name:
-        description: 'Person to greet'
+      projects:
+        description: 'Projects name separated by ,'
         required: true
-        default: 'Mona the Octocat'
-      home:
-        description: 'location'
-        required: false
-        default: 'The Octoverse'
 
 jobs:
-  say_hello:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo "Hello ${{ github.event.inputs.name }}!"
-          echo "- in ${{ github.event.inputs.home }}!"
+      - name: Split projects name
+        id: split_projects
+        run: echo ${{ inputs.projects }} | sed 's/,/\n/g'
+
+      - name: Display
+        run: echo ${{ steps.split_projects.output }}
