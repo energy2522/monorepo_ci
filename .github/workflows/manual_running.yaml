@@ -27,6 +27,3 @@ jobs:
     steps:
       - name: Display
         run: echo ${{ matrix.project }}
-        strategy:
-          matrix:
-            project: ${{ steps.split_projects.outputs.projects }}
