@@ -19,7 +19,7 @@ jobs:
           msg: ${{ github.event.inputs.projects }}
           seperator: ','
       - name: Print
-        run: for f in ${{ steps.split_project.outputs.* }}; do echo $f; done
+        run: echo ${{ toJSON(steps.split_projects.outputs) }}
 
 #    outputs:
 #      projects: ${{ steps.split_projects.outputs.projects }}
