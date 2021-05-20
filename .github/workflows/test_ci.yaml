@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -20,5 +19,7 @@ jobs:
           distribution: 'adopt'
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+        working-directory: ./SimpleService1
       - name: Build with Gradle
         run: ./gradlew build
+        working-directory: ./SimpleService1
