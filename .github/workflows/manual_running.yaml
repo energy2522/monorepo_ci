@@ -12,7 +12,9 @@ jobs:
     steps:
       - name: Split projects name
         id: split_projects
-        run: echo "::set-output ${{ github.event.inputs.projects }} | sed 's/,/\n/g'"
+        run: |
+          TEST_V=$( echo test1,test2 | sed 's/,/\n/g')
+          echo '::set-output name=projects::$TEST_V'
 
       - name: Display
-        run: echo ${{ steps.split_projects.output }}
+        run: echo ${{ steps.split_projects.output.projects }}
