@@ -17,7 +17,7 @@ jobs:
         id: split_projects
         with:
           msg: ${{ github.event.inputs.projects }}
-          separator: ','
+          seperator: ','
       - name: Print array
         run: echo ${{ steps.split_projects.outputs.* }}
 #    outputs:
