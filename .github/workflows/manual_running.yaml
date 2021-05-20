@@ -9,8 +9,8 @@ on:
 jobs:
   define_project:
     runs-on: ubuntu-latest
-    outputs:
-      projects: ${{ steps.split_projects.outputs }}
+#    outputs:
+#      projects: ${{ steps.split_projects.outputs }}
     steps:
       - name: Build array of projects
         uses: jungwinter/split@v1
@@ -18,6 +18,8 @@ jobs:
         with:
           msg: ${{ github.event.inputs.projects }}
           seperator: ','
+      - name: Print
+        run: for f in ${{ steps.split_project.outputs.* }}; do echo $f; done
 
 #    outputs:
 #      projects: ${{ steps.split_projects.outputs.projects }}
@@ -39,12 +41,12 @@ jobs:
 #      - name: Print modified files
 #        run: echo '${{ steps.modified_files_list.outputs.stringList }}'
 
-  show_projects:
-    needs: define_project
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        project: ${{ needs.define_project.outputs.projects.* }}
-    steps:
-      - name: Display
-        run: echo ${{ matrix.project }}
+#  show_projects:
+#    needs: define_project
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix:
+#        project: ${{ needs.define_project.outputs.projects.* }}
+#    steps:
+#      - name: Display
+#        run: echo ${{ matrix.project }}
