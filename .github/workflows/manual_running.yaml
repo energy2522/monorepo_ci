@@ -14,7 +14,7 @@ jobs:
       - name: Split projects name
         id: split_projects
         run:
-          echo "::set-output name=projects::${{ join($( echo test1,test2 | sed 's/,/\n/g') }})"
+          echo "::set-output name=projects::${{ join($( echo test1,test2 | sed 's/,/\n/g')) }}"
 
       - name: Display
         run: echo ${{ steps.split_projects.outputs.projects }}
