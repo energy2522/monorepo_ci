@@ -20,7 +20,7 @@ jobs:
           split-by: ','
       - name: Create array
         id: create_array
-        run: echo "::set-output name=projects::${{ steps.split_projects.outputs.* }}
+        run: echo "::set-output name=projects::${{ steps.split_projects.outputs.* }}"
 
 #    outputs:
 #      projects: ${{ steps.split_projects.outputs.projects }}
