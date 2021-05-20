@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        project: ${{ steps.split_projects.outputs.projects }}
+        project: ${{ needs.define_project.outputs.projects }}
     steps:
       - name: Display
         run: echo ${{ matrix.project }}
