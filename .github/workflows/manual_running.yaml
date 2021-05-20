@@ -13,8 +13,12 @@ jobs:
     steps:
       - name: Split projects name
         id: split_projects
-        run:
-          echo "::set-output name=projects::${{ join($( echo test1,test2 | sed 's/,/\n/g')) }}"
+        run: |
+          PROJECTS="$( echo ${{ github.event.inputs.projects }} | sed 's/,/\n/g')"
+          PROJECTS="${PROJECTS//'%'/'%25'}"
+          PROJECTS="${PROJECTS//$'\n'/'%0A'}"
+          PROJECTS="${PROJECTS//$'\r'/'%0D'}"
+          echo "::set-output name=projects::$PROJECTS"
 
       - name: Display
         run: echo ${{ steps.split_projects.outputs.projects }}
