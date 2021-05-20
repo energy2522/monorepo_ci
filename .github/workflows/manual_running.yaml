@@ -9,6 +9,8 @@ on:
 jobs:
   define_project:
     runs-on: ubuntu-latest
+    outputs:
+      projects: ${{ steps.split_projects.outputs.projects }}
     steps:
       - name: Split projects name
         id: split_projects
@@ -18,7 +20,7 @@ jobs:
           PROJECTS="${PROJECTS//$'\n'/'%0A'}"
           PROJECTS="${PROJECTS//$'\r'/'%0D'}"
           echo "::set-output name=projects::$PROJECTS"
-          echo $PROJECTS
+
   show_projects:
     needs: define_project
     runs-on: ubuntu-latest
