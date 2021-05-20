@@ -10,7 +10,7 @@ jobs:
   define_project:
     runs-on: ubuntu-latest
     outputs:
-      projects: ${{ steps.split_projects.outputs._1 }}
+      projects: ${{ steps.create_array.outputs.projects }}
     steps:
       - name: Build array of projects
         uses: rishabhgupta/split-by@v1
@@ -18,6 +18,9 @@ jobs:
         with:
           string: ${{ github.event.inputs.projects }}
           split-by: ','
+      - name: Create array
+        id: create_array
+        run: echo "::set-output name=projects::${{ steps.split_projects.outputs.* }}
 
 #    outputs:
 #      projects: ${{ steps.split_projects.outputs.projects }}
