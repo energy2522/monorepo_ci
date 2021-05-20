@@ -1,5 +1,2 @@
 .idea/**
-*/.gradle/**
-gradle-wrapper.jar
-gradlew*
-gradle-wrapper.properties
+.gradle
