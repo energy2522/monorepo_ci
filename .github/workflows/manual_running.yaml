@@ -7,7 +7,7 @@ on:
         required: true
 
 jobs:
-  test:
+  define_project:
     runs-on: ubuntu-latest
     steps:
       - name: Split projects name
@@ -18,7 +18,13 @@ jobs:
           PROJECTS="${PROJECTS//$'\n'/'%0A'}"
           PROJECTS="${PROJECTS//$'\r'/'%0D'}"
           echo "::set-output name=projects::$PROJECTS"
-
+  show_projects:
+    needs: define_project
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project: ${{ steps.split_projects.outputs.projects }}
+    steps:
       - name: Display
         run: echo ${{ matrix.project }}
         strategy:
