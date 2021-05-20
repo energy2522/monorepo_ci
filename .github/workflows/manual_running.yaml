@@ -21,9 +21,9 @@ jobs:
   show_projects:
     needs: define_project
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        project: ${{ needs.define_project.outputs }}
+#    strategy:
+#      matrix:
+#        project: ${{ needs.define_project.outputs }}
     steps:
       - name: Display
-        run: echo ${{ matrix.project }}
+        run: echo ${{ needs.define_project.outputs.projects }}
