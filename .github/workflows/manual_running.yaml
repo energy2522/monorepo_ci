@@ -13,7 +13,7 @@ jobs:
       - name: Split projects name
         id: split_projects
         run: |
-          TEST_V=$( echo test1,test2 | sed 's/,/\n/g')
+          export TEST_V=$( echo test1,test2 | sed 's/,/\n/g')
           echo '::set-output name=projects::$TEST_V'
 
       - name: Display
