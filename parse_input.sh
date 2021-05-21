@@ -1,7 +1,6 @@
 #!/bin/bash
 
 a=($(echo "$1" | tr ',' '\n'))
-echo ${a[1]}
 
 result="["
 i=0
