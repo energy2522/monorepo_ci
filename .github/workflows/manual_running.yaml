@@ -13,11 +13,8 @@ jobs:
       projects: ${{ steps.create_array.outputs.projects }}
     steps:
       - name: Build array of projects
-        uses: rishabhgupta/split-by@v1
         id: split_projects
-        with:
-          string: ${{ github.event.inputs.projects }}
-          split-by: ','
+        run: ./.github/workflows/parse_input ${{ github.event.inputs.projects }}
       - name: Create array
         id: create_array
         run: echo "::set-output name=projects::${{ steps.split_projects.outputs }}"
