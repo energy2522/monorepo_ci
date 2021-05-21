@@ -9,7 +9,7 @@ while [ $i -lt "${#a[@]}" ]; do
     result+=", "
   fi
 
-  result+=${a[$i]}
+  result+="\""${a[$i]}"\""
   i+=1
 done
 

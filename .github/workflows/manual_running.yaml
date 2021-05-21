@@ -55,7 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        project: ${{ needs.define_project.outputs.projects }}
+        project: ${{ fromJSOM(needs.define_project.outputs.projects) }}
     steps:
       - name: Display
         run: echo ${{ matrix.project }}
