@@ -12,6 +12,8 @@ jobs:
     outputs:
       projects: ${{ steps.create_array.outputs.projects }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v1
       - name: Build array of projects
         id: split_projects
 #        run: echo `pwd`
