@@ -3,17 +3,17 @@
 a=($(echo "$1" | tr ',' '\n'))
 echo ${a[1]}
 
-result="\"["
+result="["
 i=0
 while [ $i -lt "${#a[@]}" ]; do
   if [ $result != "[" ]; then
     result+=", "
   fi
 
-  result+="\""${a[$i]}"\""
+  result+=${a[$i]}
   i+=1
 done
 
-result+="]\""
+result+="]"
 
 echo $result
