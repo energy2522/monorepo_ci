@@ -16,4 +16,4 @@ done
 
 result+="]"
 
-echo $result
+echo "$result"
