@@ -17,7 +17,7 @@ jobs:
       - name: Build array of projects
         id: split_projects
 #        run: echo `pwd`
-        run: ./parse_input.sh ${{  }}
+        run: ./parse_input.sh ${{ github.event.inputs.projects }}
       - name: Create array
         id: create_array
         run: |
