@@ -38,4 +38,6 @@ jobs:
         project: ${{ fromJSON(needs.define_project.outputs.projects) }}
     steps:
       - name: Display
-        run: echo ${{ matrix.project }}
+        run: |
+        echo test
+        echo ${{ matrix.project }}
