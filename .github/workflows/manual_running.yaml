@@ -21,7 +21,9 @@ jobs:
           INPUT_VAL=${{ github.event.inputs.projects }}
           PROJECT_ARRAY="$(./parse_input.sh $INPUT_VAL)"
           echo "PROJECT_ARRAY=$PROJECT_ARRAY"
-          echo "PROJECT_ARRAY=$PROJECT_ARRAY" >> $GITHUB_ENV
+          echo "PROJECT_ARRAY<<EOF>>" >> $GITHUB_ENV
+          echo "$PROJECT_ARRAY" >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
 
       - name: Create array
         id: create_array
