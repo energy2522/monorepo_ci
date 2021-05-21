@@ -29,7 +29,6 @@ jobs:
         id: create_array
         run: |
           echo "::set-output name=projects::${{ toJSON(env.PROJECT_ARRAY) }}"
-        matrix:
 
   show_projects:
     needs: define_project
