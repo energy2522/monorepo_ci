@@ -39,4 +39,5 @@ jobs:
     steps:
       - name: Display
         run: |
-        echo ${{ matrix.project }}
+          echo test
+          echo ${{ matrix.project }}
