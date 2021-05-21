@@ -3,7 +3,7 @@
 a=($(echo "$1" | tr ',' '\n'))
 echo ${a[1]}
 
-result="["
+result="\"["
 i=0
 while [ $i -lt "${#a[@]}" ]; do
   if [ $result != "[" ]; then
@@ -14,6 +14,6 @@ while [ $i -lt "${#a[@]}" ]; do
   i+=1
 done
 
-result+="]"
+result+="]\""
 
 echo $result
