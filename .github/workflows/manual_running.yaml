@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        project: ${{ toJSON( needs.define_project.outputs.projects ) }}
+        project: ${{ fromJSON( needs.define_project.outputs.projects ) }}
     steps:
       - name: Display
         run: echo ${{ matrix.project }}
