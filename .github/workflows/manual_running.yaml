@@ -25,7 +25,6 @@ jobs:
       - name: Create array
         id: create_array
         run: |
-#          echo ${{ fromJSON(env.PROJECT_ARRAY) }}
           echo "::set-output name=projects::${{ env.PROJECT_ARRAY }}"
 
 #    outputs:
