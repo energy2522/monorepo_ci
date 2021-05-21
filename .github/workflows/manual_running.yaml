@@ -15,7 +15,7 @@ jobs:
       - name: Build array of projects
         id: split_projects
 #        run: echo `pwd`
-        run: ./.github/workflows/parse_input.sh ${{ github.event.inputs.projects }}
+        run: .parse_input.sh ${{ github.event.inputs.projects }}
       - name: Create array
         id: create_array
         run: echo "::set-output name=projects::${{ steps.split_projects.outputs }}"
