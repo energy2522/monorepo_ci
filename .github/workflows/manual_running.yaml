@@ -39,7 +39,6 @@ jobs:
     steps:
       - name: Display
         run: |
-          echo test
           echo ${{ matrix.project }}
       - name: Build project
-        run: ./gradlew :{{ matrix.project }}:build
+        run: "./gradlew :{{ matrix.project }}:build"
