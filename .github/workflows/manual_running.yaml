@@ -37,6 +37,8 @@ jobs:
       matrix:
         project: ${{ fromJSON(needs.define_project.outputs.projects) }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v1
       - name: Display
         run: |
           echo ${{ matrix.project }}
