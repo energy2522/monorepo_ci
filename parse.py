@@ -5,4 +5,5 @@ if len(sys.argv) < 2:
     exit(12)
 
 input_val = sys.argv[1]
+print(input_val)
 print([x.strip() for x in input_val.split(',')])
