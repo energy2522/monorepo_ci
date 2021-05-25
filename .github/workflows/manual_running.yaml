@@ -22,7 +22,7 @@ jobs:
         id: split_projects
         run: |
           INPUT_VAL="${{ github.event.inputs.projects }}"
-          PROJECT_ARRAY="$(python parse.py \"$INPUT_VAL\")"
+          PROJECT_ARRAY="$(python parse.py $INPUT_VAL)"
           echo "PROJECT_ARRAY=$PROJECT_ARRAY"
           echo "PROJECT_ARRAY=$PROJECT_ARRAY" >> $GITHUB_ENV
 #          echo "PROJECT_ARRAY<<EOF" >> $GITHUB_ENV
