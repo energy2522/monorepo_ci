@@ -1,6 +1,6 @@
 #!/bin/bash
 
-a=($(echo "$1" | tr ',' '\n'))
+a=($(echo "$1" | tr ', ' '\n'))
 
 result="["
 i=0
