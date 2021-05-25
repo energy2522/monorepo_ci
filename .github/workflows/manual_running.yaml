@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       projects:
-        description: 'Projects name separated by ,'
+        description: 'Projects name separated by "one" \n "two"'
         required: true
 
 jobs:
@@ -14,16 +14,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+      - name: Install py
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
       - name: Build array of projects
         id: split_projects
-#        run: echo `pwd`
         run: |
-          INPUT_VAL=${{ github.event.inputs.projects }}
-          PROJECT_ARRAY="$(./parse_input.sh $INPUT_VAL)"
+          INPUT_VAL="${{ github.event.inputs.projects }}"
+          PROJECT_ARRAY="$(python parse.py $INPUT_VAL)"
           echo "PROJECT_ARRAY=$PROJECT_ARRAY"
-          echo "PROJECT_ARRAY<<EOF" >> $GITHUB_ENV
-          echo "$PROJECT_ARRAY" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          echo "PROJECT_ARRAY=$PROJECT_ARRAY" >> $GITHUB_ENV
+#          echo "PROJECT_ARRAY<<EOF" >> $GITHUB_ENV
+#          echo "$PROJECT_ARRAY" >> $GITHUB_ENV
+#          echo "EOF" >> $GITHUB_ENV
 
       - name: Create array
         id: create_array
@@ -37,5 +41,10 @@ jobs:
       matrix:
         project: ${{ fromJSON(needs.define_project.outputs.projects) }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v1
       - name: Display
-        run: echo ${{ matrix.project }}
+        run: |
+          echo ${{ matrix.project }}
+      - name: Build project
+        run: ./gradlew :${{ matrix.project }}:build

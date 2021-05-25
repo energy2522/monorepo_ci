@@ -18,9 +18,5 @@ jobs:
         with:
           java-version: '15'
           distribution: 'adopt'
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-        working-directory: ./SimpleService1
       - name: Build with Gradle
-        run: ./gradlew build
-        working-directory: ./SimpleService1
+        run: ./gradlew :SimpleService1:build
