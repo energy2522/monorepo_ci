@@ -36,15 +36,15 @@ jobs:
         echo 'test'
 
 
-#  show_projects:
-#    needs: define_project
-#    runs-on: ubuntu-latest
+  show_projects:
+    needs: define_project
+    runs-on: ubuntu-latest
 #    strategy:
 #      matrix:
 #        project: ${{ fromJSON(needs.define_project.outputs.projects) }}
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
 #      - name: Display
 #        run: |
 #          echo ${{ matrix.project }}
