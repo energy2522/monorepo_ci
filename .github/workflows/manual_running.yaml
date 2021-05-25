@@ -33,7 +33,7 @@ jobs:
       - name: Test
         run: |
           ${{ fromJSON(github.event.inputs.projects) }}
-        echo 'test'
+          echo 'test'
 
 
   show_projects:
