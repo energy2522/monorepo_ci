@@ -29,10 +29,16 @@ jobs:
 #        id: create_array
 #        run: |
 #          echo "::set-output name=projects::${{ toJSON(env.PROJECT_ARRAY) }}"
+      - name: Update
+        id: update
+        run: |
+          INPUT_VAL=[${{ github.event.inputs.projects }}]
+          echo $INPUT_VAL
+          echo "::set-output name=projects::$INPUT_VAL"
 
       - name: Test
         run: |
-          ${{ fromJSON(github.event.inputs.projects) }}
+          ${{ fromJSON(steps.update.outputs.projects) }}
           echo 'test'
 
 
