@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       projects:
-        description: 'Projects name separated by ,'
+        description: 'Projects name separated by "one" \n "two"'
         required: true
 
 jobs:
