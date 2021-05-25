@@ -9,38 +9,44 @@ on:
 jobs:
   define_project:
     runs-on: ubuntu-latest
-    outputs:
-      projects: ${{ steps.create_array.outputs.projects }}
+#    outputs:
+#      projects: ${{ steps.create_array.outputs.projects }}
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Build array of projects
-        id: split_projects
-#        run: echo `pwd`
-        run: |
-          INPUT_VAL=${{ github.event.inputs.projects }}
-          PROJECT_ARRAY="$(./parse_input.sh $INPUT_VAL)"
-          echo "PROJECT_ARRAY=$PROJECT_ARRAY"
-          echo "PROJECT_ARRAY<<EOF" >> $GITHUB_ENV
-          echo "$PROJECT_ARRAY" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+#      - name: Build array of projects
+#        id: split_projects
+##        run: echo `pwd`
+#        run: |
+#          INPUT_VAL=${{ github.event.inputs.projects }}
+#          PROJECT_ARRAY="$(./parse_input.sh $INPUT_VAL)"
+#          echo "PROJECT_ARRAY=$PROJECT_ARRAY"
+#          echo "PROJECT_ARRAY<<EOF" >> $GITHUB_ENV
+#          echo "$PROJECT_ARRAY" >> $GITHUB_ENV
+#          echo "EOF" >> $GITHUB_ENV
 
-      - name: Create array
-        id: create_array
-        run: |
-          echo "::set-output name=projects::${{ toJSON(env.PROJECT_ARRAY) }}"
+#      - name: Create array
+#        id: create_array
+#        run: |
+#          echo "::set-output name=projects::${{ toJSON(env.PROJECT_ARRAY) }}"
 
-  show_projects:
-    needs: define_project
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        project: ${{ fromJSON(needs.define_project.outputs.projects) }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: Display
+      - name: Test
         run: |
-          echo ${{ matrix.project }}
-      - name: Build project
-        run: ./gradlew :${{ matrix.project }}:build
+          ${{ fromJSON(github.event.inputs.projects) }}
+        echo 'test'
+
+
+#  show_projects:
+#    needs: define_project
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix:
+#        project: ${{ fromJSON(needs.define_project.outputs.projects) }}
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v1
+#      - name: Display
+#        run: |
+#          echo ${{ matrix.project }}
+#      - name: Build project
+#        run: ./gradlew :${{ matrix.project }}:build
