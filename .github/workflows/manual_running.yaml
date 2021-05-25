@@ -32,7 +32,7 @@ jobs:
       - name: Update
         id: update
         run: |
-          INPUT_VAL=[${{ github.event.inputs.projects }}]
+          INPUT_VAL="[${{ github.event.inputs.projects }}]"
           echo $INPUT_VAL
           echo "::set-output name=projects::$INPUT_VAL"
 
