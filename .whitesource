@@ -7,7 +7,7 @@
   },
   "checkRunSettings": {
     "displayMode": "diff",
-    "vulnerableCheckRunConclusionLevel": "success"
+    "vulnerableCheckRunConclusionLevel": "failure"
   },
   "issueSettings": {
     "minSeverityLevel": "LOW"
